@@ -56,21 +56,16 @@ public class Visitor {
         }
         id = iCenter.signIn(name);
         amISigned = true;
-
         Question[] questions = iCenter.getQuestions();
-
-        var model = new DefaultTableModel(new Object[]{"Pytanie", "Odpowiedź"}, 0) {
+        var model = new DefaultTableModel(new Object[]{"Question:", "Answer:"}, 0) {
             public boolean isCellEditable(int row, int column) {
                 return column == 1;
             }
         };
-
         Arrays.stream(questions)
                 .map(question -> new Object[]{question.question, ""})
                 .forEachOrdered(model::addRow);
-
         questionAndInputsTable.setModel(model);
-
         switchBetwenPages("panelAnswersAndQuestions");
     }
 

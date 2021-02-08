@@ -30,11 +30,10 @@
                   </component>
                 </children>
               </scrollpane>
-              <component id="4a85" class="javax.swing.JButton" binding="editStandTextButton">
+              <component id="4a85" class="javax.swing.JButton" binding="editStandButton">
                 <constraints border-constraint="Last"/>
                 <properties>
-                  <actionCommand value="Edit Stand's Name"/>
-                  <text value="Edytuj napis na stanowisku"/>
+                  <text value="Edit stand's title"/>
                 </properties>
               </component>
             </children>
@@ -60,7 +59,7 @@
               <component id="10c5f" class="javax.swing.JButton" binding="addNewQuestionButton">
                 <constraints border-constraint="South"/>
                 <properties>
-                  <text value="Dodaj nowe pytanie"/>
+                  <text value="Add new question"/>
                 </properties>
               </component>
             </children>

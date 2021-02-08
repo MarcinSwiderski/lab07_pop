@@ -5,7 +5,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
-import java.util.stream.IntStream;
 
 
 import communication.ICenter;
@@ -22,7 +21,7 @@ public class Center implements ICenter {
 	private IDesigner iDesigner = null;
 
 	private int nextIdentifier = 0;
-	private int nextUserIdentifier = 0;
+	private int userIdentifier = 0;
 	private final Map<Integer, String> visitorNames = new HashMap<>();
 	private final Map<Integer, IStand> stands = new HashMap<>();
 	private final Map<Integer, IMonitor> monitors = new HashMap<>();
@@ -47,16 +46,15 @@ public class Center implements ICenter {
 
 	@Override
 	public int signIn(String visitorName) throws RemoteException {
-		visitorNames.put(nextUserIdentifier, visitorName);
-		return nextUserIdentifier++;
+		visitorNames.put(userIdentifier, visitorName);
+		return userIdentifier++;
 	}
 
 	@Override
 	public void signOut(int visitorId) throws RemoteException, CustomException {
         if(!visitorNames.containsKey(visitorId)) {
-        	throw new CustomException("Signing out a nonexistant visitor");
+        	throw new CustomException("Visitor doesn't exist");
 		}
-
         visitorNames.remove(visitorId);
 	}
 
@@ -68,19 +66,14 @@ public class Center implements ICenter {
 	@Override
 	public boolean[] checkAnswers(int userId, Answer[] a) throws RemoteException, CustomException {
 
-	    boolean[] corrects = new boolean[a.length];
-	    int amountCorrect = 0;
-		for(int i = 0; i < corrects.length; i++) {
-			corrects[i] = answers.get(i).answer.equals(a[i].answer);
-			if(corrects[i])
-				amountCorrect++;
+	    boolean[] goodAnswers = new boolean[a.length];
+	    int howManyAreCorrect = 0;
+		for(int i = 0; i < goodAnswers.length; i++) {
+			goodAnswers[i] = answers.get(i).answer.equals(a[i].answer);
+			if(goodAnswers[i])
+				howManyAreCorrect++;
 		}
-		int percentageScore = Math.round((100f * amountCorrect) / (1f * a.length));
-
-		for(IMonitor monitor : monitors.values()) {
-		    monitor.setScore(visitorNames.get(userId), percentageScore);
-		}
-		return corrects;
+		return goodAnswers;
 	}
 
 	@Override
@@ -118,10 +111,8 @@ public class Center implements ICenter {
 
 	@Override
 	public void disconnect(int identifier) throws RemoteException, CustomException {
-		// TODO Auto-generated method stub
 		if(stands.containsKey(identifier)) {
 			stands.remove(identifier);
-
 			if(iDesigner != null)
 				iDesigner.notify(identifier, false);
 		} else if(monitors.containsKey(identifier)) {
@@ -129,7 +120,7 @@ public class Center implements ICenter {
 		} else if(identifier == iDesignerId) {
 			iDesigner = null;
 		} else {
-			throw new CustomException("Trying to disconnect an entity that doesn't exist.");
+			throw new CustomException("Message");
 		}
 	}
 }
