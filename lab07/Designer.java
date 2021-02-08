@@ -1,10 +1,6 @@
 package lab07;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -28,8 +24,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Designer implements IDesigner, ListModel<String> {
-
 	private JTabbedPane tabbedPane;
+
 	private JList<String> standsList;
 	private JButton editStandTextButton;
 	private JTable questionsAnswersTable;
@@ -58,15 +54,36 @@ public class Designer implements IDesigner, ListModel<String> {
 	}
 
 	public static void main(String[] args) {
-		new Designer().runUi();
+		new Designer().startGUI();
+	}
+
+	private void startGUI() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+
+		questionsAnswersTable.setModel(new DefaultTableModel(new Object[]{"Pytania", "Odpowiedzi"}, 0) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		});
+		standsList.setModel(this);
+		editStandTextButton.addActionListener(actionEvent -> editStandText());
+		addNewQuestionButton.addActionListener(actionEvent -> addNewQuestion());
+
+		JFrame frame = new JFrame("Designer");
+		frame.setContentPane(panel);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setMinimumSize(new Dimension(300, 200));
 	}
 
 	private void editStandText() {
 		int selectedIndex = standsList.getSelectedIndex();
-		if(selectedIndex == -1) {
-			JOptionPane.showMessageDialog(panel, "Nie wybrano stanowiska", "Uwaga", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
+
 		IStand stand = stands.get(selectedIndex);
 		String oldText = descriptions.getOrDefault(stand, "");
 		String newText = JOptionPane.showInputDialog(panel, "Wprowadź nową treść", oldText);
@@ -83,46 +100,12 @@ public class Designer implements IDesigner, ListModel<String> {
 		}
 	}
 
-	private void runUi() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-			e.printStackTrace();
-		}
-
-		questionsAnswersTable.setModel(new DefaultTableModel(new Object[]{"Pytania", "Odpowiedzi"}, 0) {
-			public boolean isCellEditable(int row, int column) {
-			    return false;
-			}
-		});
-		standsList.setModel(this);
-		editStandTextButton.addActionListener(actionEvent -> editStandText());
-		addNewQuestionButton.addActionListener(actionEvent -> addNewQuestion());
-
-		JFrame frame = new JFrame("Designer");
-		frame.setContentPane(panel);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		frame.addComponentListener(new ComponentAdapter() {
-			public void componentHidden(ComponentEvent e) {
-				try {
-					ic.disconnect(id);
-				} catch (RemoteException | CustomException remoteException) {
-					remoteException.printStackTrace();
-				}
-				frame.dispose();
-			}
-		});
-		frame.setMinimumSize(new Dimension(300, 200));
-	}
-
 	private void addNewQuestion() {
-		String questionText = JOptionPane.showInputDialog(panel, "Wprowadź treść pytania");
+		String questionText = JOptionPane.showInputDialog(panel, "Question:");
 		Question question = new Question();
 		question.question = questionText;
 
-		String answerText = JOptionPane.showInputDialog(panel, "Wprowadź treść odpowiedzi");
+		String answerText = JOptionPane.showInputDialog(panel, "Answer:");
 		Answer answer = new Answer();
 		answer.answer = answerText;
 

@@ -25,7 +25,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="brak"/>
+          <text value="none"/>
         </properties>
       </component>
       <component id="769bb" class="javax.swing.JLabel">
@@ -34,7 +34,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Informacja:"/>
+          <text value="Stand Name:"/>
         </properties>
       </component>
     </children>

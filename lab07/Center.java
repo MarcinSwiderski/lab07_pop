@@ -67,8 +67,6 @@ public class Center implements ICenter {
 
 	@Override
 	public boolean[] checkAnswers(int userId, Answer[] a) throws RemoteException, CustomException {
-		if(!visitorNames.containsKey(userId))
-			throw new CustomException("Visitor does not exist");
 
 	    boolean[] corrects = new boolean[a.length];
 	    int amountCorrect = 0;

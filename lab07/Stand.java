@@ -36,10 +36,10 @@ public class Stand implements IStand{
 	}
 
 	public static void main(String[] args) {
-	    new Stand().runUi();
+	    new Stand().startGUI();
 	}
 
-	private void runUi() {
+	private void startGUI() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -48,7 +48,7 @@ public class Stand implements IStand{
 
 		JFrame frame = new JFrame("Stand");
 		frame.setContentPane(panel);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 		frame.addComponentListener(new ComponentAdapter() {
@@ -63,6 +63,7 @@ public class Stand implements IStand{
 		});
 		frame.setMinimumSize(new Dimension(300, 100));
 	}
+
 
 	@Override
 	public void setContent(Description d) throws RemoteException {

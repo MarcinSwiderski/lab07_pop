@@ -12,32 +12,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="ea4db" layout-manager="BorderLayout" hgap="0" vgap="0">
-            <constraints>
-              <tabbedpane title="Pytania i odpowiedzi"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <scrollpane id="87062">
-                <constraints border-constraint="Center"/>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="9be47" class="javax.swing.JTable" binding="questionsAnswersTable">
-                    <constraints/>
-                    <properties/>
-                  </component>
-                </children>
-              </scrollpane>
-              <component id="10c5f" class="javax.swing.JButton" binding="addNewQuestionButton">
-                <constraints border-constraint="Last"/>
-                <properties>
-                  <text value="Dodaj nowe pytanie"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
           <grid id="b228c" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Stanowiska wystawowe"/>
@@ -60,6 +34,32 @@
                 <constraints border-constraint="Last"/>
                 <properties>
                   <text value="Edytuj napis na stanowisku"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="ea4db" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Pytania i odpowiedzi"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <scrollpane id="87062">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="9be47" class="javax.swing.JTable" binding="questionsAnswersTable">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="10c5f" class="javax.swing.JButton" binding="addNewQuestionButton">
+                <constraints border-constraint="Last"/>
+                <properties>
+                  <text value="Dodaj nowe pytanie"/>
                 </properties>
               </component>
             </children>

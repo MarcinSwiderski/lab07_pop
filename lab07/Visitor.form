@@ -16,7 +16,7 @@
         <children>
           <component id="4364c" class="javax.swing.JTextArea" binding="userName">
             <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -25,57 +25,57 @@
           </component>
           <hspacer id="45648">
             <constraints>
-              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </hspacer>
           <vspacer id="c6d11">
             <constraints>
-              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
           <hspacer id="f8bbc">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0" ipadx="150"/>
             </constraints>
           </hspacer>
-          <component id="48bc8" class="javax.swing.JButton" binding="joinButton">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <text value="Dołącz"/>
-            </properties>
-          </component>
           <hspacer id="772b2">
             <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </hspacer>
-          <component id="9e819" class="javax.swing.JLabel">
+          <component id="48bc8" class="javax.swing.JButton" binding="signInButton">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <text value="Nazwa użytkownika:"/>
+              <text value="Sign In"/>
             </properties>
           </component>
-          <hspacer id="c14a9">
+          <component id="9e819" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="User Name:"/>
+            </properties>
+          </component>
+          <hspacer id="73d0d">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0" ipadx="150"/>
             </constraints>
           </hspacer>
         </children>
       </grid>
       <grid id="a2e90" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
-          <card name="questionsCard"/>
+          <card name="panelAnswersAndQuestions"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -85,9 +85,12 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="19778" class="javax.swing.JTable" binding="questionsAnswersTable">
+              <component id="19778" class="javax.swing.JTable" binding="questionAndInputsTable">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <showHorizontalLines value="true"/>
+                  <showVerticalLines value="true"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -96,46 +99,14 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="2714a" class="javax.swing.JButton" binding="checkAnswersButton">
-                <constraints border-constraint="After"/>
-                <properties>
-                  <text value="Sprawdź odpowiedzi"/>
-                </properties>
-              </component>
               <component id="e8253" class="javax.swing.JButton" binding="signOutButton">
                 <constraints border-constraint="Before"/>
                 <properties>
-                  <text value="Odłącz się"/>
+                  <text value="Disconnect From Source"/>
                 </properties>
               </component>
             </children>
           </grid>
-        </children>
-      </grid>
-      <grid id="ed8f3" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints>
-          <card name="resultsCard"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="554f7" class="javax.swing.JButton" binding="resultsSignOutButton">
-            <constraints border-constraint="South"/>
-            <properties>
-              <text value="Odłącz się"/>
-            </properties>
-          </component>
-          <scrollpane id="363b2">
-            <constraints border-constraint="Center"/>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="40f16" class="javax.swing.JTable" binding="resultsTable">
-                <constraints/>
-                <properties/>
-              </component>
-            </children>
-          </scrollpane>
         </children>
       </grid>
     </children>
