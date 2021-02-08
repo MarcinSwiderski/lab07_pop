@@ -29,7 +29,7 @@ public class Monitor implements IMonitor {
 
     public Monitor() {
         try {
-            Registry reg = LocateRegistry.getRegistry("localhost", 3000);
+            Registry reg = LocateRegistry.getRegistry("localhost", 4000);
             iCenter = (ICenter) reg.lookup("Center");
             IMonitor im = (IMonitor) UnicastRemoteObject.exportObject(this, 0);
             System.out.println("Monitor is ready");

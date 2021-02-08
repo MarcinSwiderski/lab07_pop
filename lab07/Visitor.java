@@ -16,9 +16,9 @@ import java.util.Arrays;
 public class Visitor {
     private JPanel panel;
     private JTextArea userName;
-    private JButton signInButton;
+    private JButton connectButton;
     private JTable questionAndInputsTable;
-    private JButton signOutButton;
+    private JButton disconnectFromSourceButton;
     private ICenter iCenter;
 
     private boolean amISigned = false;
@@ -26,7 +26,7 @@ public class Visitor {
 
     public Visitor() {
         try {
-            Registry reg = LocateRegistry.getRegistry("localhost", 3000);
+            Registry reg = LocateRegistry.getRegistry("localhost", 4000);
             iCenter = (ICenter) reg.lookup("Center");
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
@@ -39,11 +39,11 @@ public class Visitor {
 
     private void signOut() throws RemoteException, CustomException {
         iCenter.signOut(id);
-        switchCard("signedOut");
+        switchBetwenPages("logInPage");
         amISigned = false;
     }
 
-    private void switchCard(String cardName) {
+    private void switchBetwenPages(String cardName) {
         CardLayout layout = (CardLayout) panel.getLayout();
         layout.show(panel, cardName);
     }
@@ -51,7 +51,7 @@ public class Visitor {
     private void signIn() throws RemoteException {
         String name = userName.getText();
         if(name.isEmpty()) {
-            JOptionPane.showMessageDialog(panel, "Brak wpisanej nazwy użytkownika", "Uwaga", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(panel, "Provided username incorrect or does not exist!", "ERROR", JOptionPane.WARNING_MESSAGE);
             return;
         }
         id = iCenter.signIn(name);
@@ -71,7 +71,7 @@ public class Visitor {
 
         questionAndInputsTable.setModel(model);
 
-        switchCard("panelAnswersAndQuestions");
+        switchBetwenPages("panelAnswersAndQuestions");
     }
 
     private void startGUI() {
@@ -81,7 +81,7 @@ public class Visitor {
             e.printStackTrace();
         }
 
-        signInButton.addActionListener(actionEvent -> {
+        connectButton.addActionListener(actionEvent -> {
             try {
                 signIn();
             } catch (RemoteException e) {
@@ -89,7 +89,7 @@ public class Visitor {
             }
         });
 
-        signOutButton.addActionListener(actionEvent -> {
+        disconnectFromSourceButton.addActionListener(actionEvent -> {
             try {
                 signOut();
             } catch (RemoteException | CustomException e) {
@@ -104,6 +104,4 @@ public class Visitor {
         frame.setVisible(true);
         frame.setMinimumSize(new Dimension(300, 100));
     }
-
-
 }

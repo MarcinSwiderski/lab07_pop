@@ -40,7 +40,7 @@ public class Designer implements IDesigner, ListModel<String> {
 
 	public Designer() {
 		try {
-			Registry reg = LocateRegistry.getRegistry("localhost",3000);
+			Registry reg = LocateRegistry.getRegistry("localhost",4000);
 			ic = (ICenter) reg.lookup("Center");
 			IDesigner iDesigner = (IDesigner) UnicastRemoteObject.exportObject(this,0);
 			System.out.println("Designer is ready");
@@ -152,7 +152,7 @@ public class Designer implements IDesigner, ListModel<String> {
 	@Override
 	public String getElementAt(int i) {
 	    IStand stand = stands.get(i);
-	    return descriptions.getOrDefault(stand, "[Stanowisko bez tekstu]");
+	    return descriptions.getOrDefault(stand, "------------");
 	}
 
 	@Override

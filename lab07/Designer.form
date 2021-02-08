@@ -14,7 +14,7 @@
         <children>
           <grid id="b228c" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <tabbedpane title="Stanowiska wystawowe"/>
+              <tabbedpane title="Stands"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -33,6 +33,7 @@
               <component id="4a85" class="javax.swing.JButton" binding="editStandTextButton">
                 <constraints border-constraint="Last"/>
                 <properties>
+                  <actionCommand value="Edit Stand's Name"/>
                   <text value="Edytuj napis na stanowisku"/>
                 </properties>
               </component>
@@ -40,7 +41,7 @@
           </grid>
           <grid id="ea4db" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <tabbedpane title="Pytania i odpowiedzi"/>
+              <tabbedpane title="Question Designer"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -57,7 +58,7 @@
                 </children>
               </scrollpane>
               <component id="10c5f" class="javax.swing.JButton" binding="addNewQuestionButton">
-                <constraints border-constraint="Last"/>
+                <constraints border-constraint="South"/>
                 <properties>
                   <text value="Dodaj nowe pytanie"/>
                 </properties>

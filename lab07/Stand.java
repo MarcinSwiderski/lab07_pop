@@ -20,12 +20,12 @@ public class Stand implements IStand{
 
 	private int id;
 	private JPanel panel;
-	private JLabel question;
+	private JLabel standName;
 	private ICenter ic;
 
 	private Stand() {
 		try {
-			Registry reg = LocateRegistry.getRegistry("localhost",3000);
+			Registry reg = LocateRegistry.getRegistry("localhost",4000);
 			ic = (ICenter) reg.lookup("Center");
 			IStand is = (IStand) UnicastRemoteObject.exportObject(this,0);
 			System.out.println("Stand is ready");
@@ -68,7 +68,7 @@ public class Stand implements IStand{
 	@Override
 	public void setContent(Description d) throws RemoteException {
 		System.out.printf("New description: %s\n", d.description);
-		question.setText(d.description);
+		standName.setText(d.description);
 	}
 
 	@Override

@@ -32,7 +32,7 @@ public class Center implements ICenter {
 
 	public Center() {
 		try {
-			Registry reg = LocateRegistry.createRegistry(3000);
+			Registry reg = LocateRegistry.createRegistry(4000);
 			reg.rebind("Center", UnicastRemoteObject.exportObject(this, 0));
 			System.out.println("Center is ready");
 		} catch (RemoteException e) {
